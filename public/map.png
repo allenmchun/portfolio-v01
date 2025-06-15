@@ -1,0 +1,1 @@
+<command>curl -o public/map.png https://raw.githubusercontent.com/ucladatares/flight-analysis/main/images/map.png</command>
