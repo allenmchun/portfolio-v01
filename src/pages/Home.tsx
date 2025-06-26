@@ -19,16 +19,18 @@ export function Home() {
 
       {/* About Section */}
       <section id="about" className="py-20">
-        <div className="flex flex-col gap-8 max-w-7xl mx-auto">
-          <h1 className="text-[1.45rem] md:text-[1.836rem] font-bold mt-12 md:mt-10 mb-6 font-mono lowercase">about</h1>
-          <SplineSceneDemo />
+        <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4">
+          <h1 className="text-xl font-mono font-bold uppercase mb-6">ABOUT</h1>
+          <div className="w-full">
+            <SplineSceneDemo />
+          </div>
         </div>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="py-20">
-        <div className="flex flex-col gap-8 max-w-7xl mx-auto">
-          <h1 className="text-[1.45rem] md:text-[1.836rem] font-bold mt-12 md:mt-10 mb-6 font-mono lowercase">projects</h1>
+        <div className="flex flex-col gap-8 max-w-7xl mx-auto px-4">
+          <h1 className="text-xl font-mono font-bold uppercase mb-6">PROJECTS</h1>
           <div className="w-full">
             <ThreeDPhotoCarousel />
           </div>
