@@ -4,12 +4,15 @@
 
 @layer base {
   html {
+    background-color: white;
+  }
+  
+  html.dark {
     background-color: black;
   }
   
   body {
-    @apply antialiased;
-    background-color: black;
+    @apply antialiased bg-white text-custom-blue dark:bg-black dark:text-white;
     margin: 0;
     padding: 0;
     min-height: 100vh;

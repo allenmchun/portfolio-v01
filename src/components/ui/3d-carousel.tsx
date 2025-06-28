@@ -59,7 +59,7 @@ const projects = [
     url: "https://fcpanalytics.wordpress.com/wp-content/uploads/2022/03/140xp_final_report.pdf"
   },
   {
-    image: "https://sportsmania.asia/wp-content/uploads/2023/01/Rashford-celebration-explained.jpeg",
+    image: "https://therepublikofmancunia.com/wp-content/uploads/2023/05/3518372-71714608-2560-1440-1440x810.jpeg",
     url: "https://public.tableau.com/app/profile/allen8597/viz/ManchesterUnited2022-2023/ManchesterUnited"
   },
   {

@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
+      colors: {
+        'custom-blue': '#000cff',
+      },
       animation: {
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "carousel-spin": "carousel-spin 30s linear infinite",

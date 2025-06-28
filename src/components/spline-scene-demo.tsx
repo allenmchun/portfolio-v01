@@ -33,10 +33,10 @@ export function SplineSceneDemo() {
   const showRobot = !isMobile || (isMobile && isLandscape);
   
   return (
-    <Card className="w-full relative overflow-hidden bg-gradient-to-r from-black/95 to-black/90">
+    <Card className="w-full relative overflow-hidden bg-white/95 dark:bg-black/95">
       <Spotlight
         className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="white"
+        fill={document.documentElement.classList.contains('dark') ? "white" : "#000cff"}
       />
       
       <div className="flex flex-col md:flex-row relative">
@@ -44,16 +44,16 @@ export function SplineSceneDemo() {
         <div className="flex-1 p-8 relative z-10">
           <div className="space-y-8">
             <div>
-              <h2 className="text-[1.4rem] font-mono text-neutral-300 mb-2">education</h2>
-              <ul className="space-y-2 text-neutral-100 font-mono text-[0.8rem]">
+              <h2 className="text-[1.4rem] font-mono text-custom-blue/70 dark:text-neutral-300 mb-2">education</h2>
+              <ul className="space-y-2 text-custom-blue dark:text-neutral-100 font-mono text-[0.8rem]">
                 <li>MS Data Science, UCLA</li>
                 <li>BS Statistics, UCLA</li>
               </ul>
             </div>
 
             <div>
-              <h2 className="text-[1.4rem] font-mono text-neutral-300 mb-2">work experience</h2>
-              <ul className="space-y-2 text-neutral-100 font-mono text-[0.8rem]">
+              <h2 className="text-[1.4rem] font-mono text-custom-blue/70 dark:text-neutral-300 mb-2">work experience</h2>
+              <ul className="space-y-2 text-custom-blue dark:text-neutral-100 font-mono text-[0.8rem]">
                 <li>Business Intelligence Analyst, Latham & Watkins LLP</li>
                 <li>Data Science Intern, UCLA Women's Basketball</li>
                 <li>Operations Analyst Intern, UCLA Football</li>
@@ -61,7 +61,7 @@ export function SplineSceneDemo() {
             </div>
 
             <div>
-              <h2 className="text-[1.4rem] font-mono text-neutral-300 mb-2">skills</h2>
+              <h2 className="text-[1.4rem] font-mono text-custom-blue/70 dark:text-neutral-300 mb-2">skills</h2>
               <div className="pl-0">
                 <LogoCarousel columnCount={3} logos={allLogos} />
               </div>
@@ -71,7 +71,7 @@ export function SplineSceneDemo() {
 
         {/* Right content - Robot */}
         {showRobot && (
-          <div className="flex-1 relative min-h-[400px] bg-gradient-to-l from-black/90 via-black/80 to-transparent">
+          <div className="flex-1 relative min-h-[400px] bg-gradient-to-l from-white/90 dark:from-black/90 via-white/80 dark:via-black/80 to-transparent">
             <SplineScene 
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"

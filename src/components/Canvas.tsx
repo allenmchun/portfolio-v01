@@ -42,7 +42,12 @@ export function Canvas() {
 
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+      ctx.fillStyle = 'rgba(0, 12, 255, 0.8)'; // Custom blue for light mode
+      
+      // Check if dark mode is active
+      if (document.documentElement.classList.contains('dark')) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // White for dark mode
+      }
 
       particlesRef.current.forEach((particle, i) => {
         // Update position
@@ -62,7 +67,10 @@ export function Canvas() {
         const mouseDistance = Math.hypot(mouseRef.current.x - particle.x, mouseRef.current.y - particle.y);
         if (mouseDistance < 120) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(255, 255, 255, ${1 - mouseDistance / 120})`;
+          const isDark = document.documentElement.classList.contains('dark');
+          ctx.strokeStyle = isDark 
+            ? `rgba(255, 255, 255, ${1 - mouseDistance / 120})`
+            : `rgba(0, 12, 255, ${1 - mouseDistance / 120})`;
           ctx.lineWidth = 0.5;
           ctx.moveTo(particle.x, particle.y);
           ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
@@ -76,7 +84,10 @@ export function Canvas() {
           
           if (distance < 80) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 80})`;
+            const isDark = document.documentElement.classList.contains('dark');
+            ctx.strokeStyle = isDark 
+              ? `rgba(255, 255, 255, ${1 - distance / 80})`
+              : `rgba(0, 12, 255, ${1 - distance / 80})`;
             ctx.lineWidth = 0.3;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(p2.x, p2.y);

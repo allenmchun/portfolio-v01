@@ -110,9 +110,12 @@ function TableauLogo(props: SVGProps<SVGSVGElement>) {
 
 function PowerBILogo(props: SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <path fill="#F2C811" d="M0 0h1200v1200H0z"/>
-      <path fill="#000" d="M337.5 457h109.375v432.813H337.5V457zm191.406 175.469h109.375v257.344H528.906V632.469zm191.407-87.813h109.375v345.156H720.313V544.656zm191.406-130.469h109.375v475.625H911.719V414.187z"/>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" {...props}>
+      <rect width="32" height="32" rx="6" fill="#F2C811"/>
+      <rect x="7.5" y="13.5" width="2" height="9" rx="1" fill="#000"/>
+      <rect x="12.5" y="10.5" width="2" height="12" rx="1" fill="#000"/>
+      <rect x="17.5" y="15.5" width="2" height="7" rx="1" fill="#000"/>
+      <rect x="22.5" y="8.5" width="2" height="14" rx="1" fill="#000"/>
     </svg>
   );
 }
@@ -130,11 +133,42 @@ function GoogleAnalyticsLogo(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+function ExcelLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
+      <rect width="1024" height="1024" rx="200" fill="#217346"/>
+      <rect x="256" y="256" width="512" height="512" rx="80" fill="#fff"/>
+      <path d="M384 384h64l48 80 48-80h64l-80 128 80 128h-64l-48-80-48 80h-64l80-128-80-128z" fill="#217346"/>
+    </svg>
+  );
+}
+
+function TypeScriptLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
+      <rect width="1024" height="1024" rx="200" fill="#3178C6"/>
+      <text x="50%" y="60%" textAnchor="middle" fontSize="400" fontFamily="Arial, Helvetica, sans-serif" fill="#fff" dy=".35em">TS</text>
+    </svg>
+  );
+}
+
+function TailwindLogo(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" {...props}>
+      <rect width="1024" height="1024" rx="200" fill="#06B6D4"/>
+      <path d="M512 384c-112 0-168 56-168 168 56-56 112-56 168 0 56 56 112 56 168 0 0-112-56-168-168-168zm-168 168c-112 0-168 56-168 168 56-56 112-56 168 0 56 56 112 56 168 0 0-112-56-168-168-168z" fill="#fff"/>
+    </svg>
+  );
+}
+
 export const allLogos = [
   { name: "R", id: 1, img: RLogo },
   { name: "Python", id: 2, img: PythonLogo },
   { name: "SQL", id: 3, img: SQLLogo },
   { name: "Tableau", id: 4, img: TableauLogo },
   { name: "Power BI", id: 5, img: PowerBILogo },
-  { name: "Google Analytics", id: 6, img: GoogleAnalyticsLogo }
+  { name: "Google Analytics", id: 6, img: GoogleAnalyticsLogo },
+  { name: "Excel", id: 7, img: ExcelLogo },
+  { name: "TypeScript", id: 8, img: TypeScriptLogo },
+  { name: "Tailwind CSS", id: 9, img: TailwindLogo },
 ];

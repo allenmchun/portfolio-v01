@@ -55,12 +55,12 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-black/80 backdrop-blur-sm z-50">
+    <nav className="fixed top-0 left-0 right-0 bg-white/80 dark:bg-black/80 backdrop-blur-sm z-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <button 
             onClick={() => scrollToSection('home')}
-            className="text-xl font-mono font-bold hover:text-zinc-300 transition-colors"
+            className="text-xl font-mono font-bold text-custom-blue dark:text-white hover:text-custom-blue/70 dark:hover:text-zinc-300 transition-colors"
           >
             AC
           </button>
@@ -68,7 +68,7 @@ export function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800"
+            className="md:hidden p-2 rounded-md text-custom-blue/60 dark:text-zinc-400 hover:text-custom-blue dark:hover:text-white hover:bg-custom-blue/10 dark:hover:bg-zinc-800"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -80,7 +80,9 @@ export function Navbar() {
                 <button
                   onClick={() => scrollToSection(path)}
                   className={`flex items-center space-x-2 transition-colors lowercase font-mono ${
-                    activeSection === path ? 'text-white' : 'text-zinc-400 hover:text-white'
+                    activeSection === path 
+                      ? 'text-custom-blue dark:text-white' 
+                      : 'text-custom-blue/60 dark:text-zinc-400 hover:text-custom-blue dark:hover:text-white'
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -101,8 +103,8 @@ export function Navbar() {
                   onClick={() => scrollToSection(path)}
                   className={`flex items-center space-x-3 px-3 py-2 rounded-md font-mono lowercase transition-colors w-full text-left ${
                     activeSection === path
-                      ? 'bg-zinc-900 text-white'
-                      : 'text-zinc-400 hover:bg-zinc-800 hover:text-white'
+                      ? 'bg-custom-blue/10 dark:bg-zinc-900 text-custom-blue dark:text-white'
+                      : 'text-custom-blue/60 dark:text-zinc-400 hover:bg-custom-blue/10 dark:hover:bg-zinc-800 hover:text-custom-blue dark:hover:text-white'
                   }`}
                 >
                   <Icon className="w-5 h-5" />
