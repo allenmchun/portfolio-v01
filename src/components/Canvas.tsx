@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Particle {
   x: number;
@@ -12,6 +12,25 @@ export function Canvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const [isDark, setIsDark] = useState(true);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkTheme();
+
+    // Listen for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -41,12 +60,19 @@ export function Canvas() {
     };
 
     const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(0, 12, 255, 0.8)'; // Custom blue for light mode
+      // Set background based on theme
+      if (isDark) {
+        ctx.fillStyle = 'rgba(0, 0, 0, 1)'; // Black background for dark mode
+      } else {
+        ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // White background for light mode
+      }
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Check if dark mode is active
-      if (document.documentElement.classList.contains('dark')) {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // White for dark mode
+      // Set particle color based on theme
+      if (isDark) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; // White particles for dark mode
+      } else {
+        ctx.fillStyle = 'rgba(0, 12, 255, 0.8)'; // Blue particles for light mode
       }
 
       particlesRef.current.forEach((particle, i) => {
@@ -67,7 +93,6 @@ export function Canvas() {
         const mouseDistance = Math.hypot(mouseRef.current.x - particle.x, mouseRef.current.y - particle.y);
         if (mouseDistance < 120) {
           ctx.beginPath();
-          const isDark = document.documentElement.classList.contains('dark');
           ctx.strokeStyle = isDark 
             ? `rgba(255, 255, 255, ${1 - mouseDistance / 120})`
             : `rgba(0, 12, 255, ${1 - mouseDistance / 120})`;
@@ -84,7 +109,6 @@ export function Canvas() {
           
           if (distance < 80) {
             ctx.beginPath();
-            const isDark = document.documentElement.classList.contains('dark');
             ctx.strokeStyle = isDark 
               ? `rgba(255, 255, 255, ${1 - distance / 80})`
               : `rgba(0, 12, 255, ${1 - distance / 80})`;
@@ -125,12 +149,12 @@ export function Canvas() {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [isDark]); // Re-run when theme changes
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 w-full h-full bg-black"
+      className={`fixed inset-0 -z-10 w-full h-full ${isDark ? 'bg-black' : 'bg-white'}`}
     />
   );
 }
