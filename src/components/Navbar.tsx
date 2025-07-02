@@ -29,29 +29,37 @@ export function Navbar() {
 
   // Intersection Observer to detect active section
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+    const handleScroll = () => {
+      const sections = navItems.map(({ path }) => ({
+        id: path,
+        element: document.getElementById(path)
+      })).filter(item => item.element);
+
+      const viewportCenter = window.innerHeight / 2;
+      let closestSection = 'home';
+      let minDistance = Infinity;
+
+      sections.forEach(({ id, element }) => {
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const distance = Math.abs(sectionCenter - viewportCenter);
+          
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSection = id;
           }
-        });
-      },
-      {
-        rootMargin: '-20% 0px -20% 0px', // Trigger when section is 20% in view
-        threshold: 0.1
-      }
-    );
+        }
+      });
 
-    // Observe all sections
-    navItems.forEach(({ path }) => {
-      const element = document.getElementById(path);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+      setActiveSection(closestSection);
+    };
 
-    return () => observer.disconnect();
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial call
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
